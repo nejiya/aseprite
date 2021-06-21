@@ -32,6 +32,7 @@ namespace app {
     void rangeValue(doc::frame_t& from, doc::frame_t& to);
     doc::color_t colorValue();
     doc::AniDir aniDirValue();
+    bool oneShotValue();
 
   private:
     const doc::Sprite* m_sprite;
