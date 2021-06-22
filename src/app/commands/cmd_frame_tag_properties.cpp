@@ -13,7 +13,7 @@
 #include "app/cmd/set_tag_color.h"
 #include "app/cmd/set_tag_name.h"
 #include "app/cmd/set_tag_range.h"
-#include "app/cmd/set_tag_one_shot.h"
+#include "app/cmd/set_tag_oneshot.h"
 #include "app/color.h"
 #include "app/commands/command.h"
 #include "app/commands/params.h"
@@ -112,7 +112,7 @@ void FrameTagPropertiesCommand::onExecute(Context* context)
 
   bool oneShot = window.oneShotValue();
   if (tag->oneShot() != oneShot)
-      tx(new cmd::SetTagOneShot(tag, oneShot));
+    tx(new cmd::SetTagOneShot(tag, oneShot));
 
   tx.commit();
 }

@@ -10,7 +10,7 @@
 #include "config.h"
 #endif
 
-#include "app/cmd/set_tag_one_shot.h"
+#include "app/cmd/set_tag_oneshot.h"
 
 #include "doc/tag.h"
 
