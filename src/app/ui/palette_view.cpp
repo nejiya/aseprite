@@ -727,7 +727,7 @@ gfx::Rect PaletteView::getPaletteEntryBounds(int index) const
 
   return gfx::Rect(
     bounds.x + col*boxsize + (col-1)*spacing + (m_withSeparator ? border().left(): 0),
-    bounds.y + row*boxsize + (row-1)*spacing + (m_withSeparator ? border().top(): 0),
+    bounds.y + (row*boxsize + row*9) + (row-1)*spacing + (m_withSeparator ? border().top(): 0),
     boxsize, boxsize);
 }
 
