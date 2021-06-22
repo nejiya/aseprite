@@ -20,8 +20,8 @@
     <label text="@.ani_dir" />
     <combobox id="anidir" />
 
-    <label text="@.one_shot" />
-    <check id="oneshot" />
+    <label text="@.loop" />
+    <check id="loop" />
 
     <separator horizontal="true" cell_hspan="2" />
 

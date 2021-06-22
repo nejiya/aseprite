@@ -13,7 +13,7 @@
 #include "app/cmd/set_tag_color.h"
 #include "app/cmd/set_tag_name.h"
 #include "app/cmd/set_tag_range.h"
-#include "app/cmd/set_tag_oneshot.h"
+#include "app/cmd/set_tag_loop.h"
 #include "app/color.h"
 #include "app/commands/command.h"
 #include "app/commands/params.h"
@@ -110,9 +110,9 @@ void FrameTagPropertiesCommand::onExecute(Context* context)
   if (tag->aniDir() != anidir)
     tx(new cmd::SetTagAniDir(tag, anidir));
 
-  bool oneShot = window.oneShotValue();
-  if (tag->oneShot() != oneShot)
-    tx(new cmd::SetTagOneShot(tag, oneShot));
+  bool loop = window.loopValue();
+  if (tag->loop() != loop)
+    tx(new cmd::SetTagLoop(tag, loop));
 
   tx.commit();
 }

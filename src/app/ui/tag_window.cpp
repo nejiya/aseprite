@@ -35,7 +35,7 @@ TagWindow::TagWindow(const doc::Sprite* sprite, const doc::Tag* tag)
 
   fill_anidir_combobox(anidir(), tag->aniDir());
 
-  oneshot()->setSelected(tag->oneShot());
+  loop()->setSelected(tag->loop());
 }
 
 bool TagWindow::show()
@@ -71,9 +71,9 @@ doc::AniDir TagWindow::aniDirValue()
   return (doc::AniDir)anidir()->getSelectedItemIndex();
 }
 
-bool TagWindow::oneShotValue()
+bool TagWindow::loopValue()
 {
-  return oneshot()->isSelected();
+  return loop()->isSelected();
 }
 
 } // namespace app

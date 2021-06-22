@@ -12,7 +12,7 @@
 #include "app/cmd/set_tag_anidir.h"
 #include "app/cmd/set_tag_color.h"
 #include "app/cmd/set_tag_name.h"
-#include "app/cmd/set_tag_oneshot.h"
+#include "app/cmd/set_tag_loop.h"
 #include "app/cmd/set_tag_range.h"
 #include "app/script/docobj.h"
 #include "app/script/engine.h"
@@ -84,10 +84,10 @@ int Tag_get_aniDir(lua_State* L)
   return 1;
 }
 
-int Tag_get_oneShot(lua_State* L)
+int Tag_get_loop(lua_State* L)
 {
     auto tag = get_docobj<Tag>(L, 1);
-    lua_pushboolean(L, tag->oneShot());
+    lua_pushboolean(L, tag->loop());
     return 1;
 }
 
@@ -150,12 +150,12 @@ int Tag_set_aniDir(lua_State* L)
   return 0;
 }
 
-int Tag_set_oneShot(lua_State* L)
+int Tag_set_loop(lua_State* L)
 {
     auto tag = get_docobj<Tag>(L, 1);
-    const bool oneShot = lua_toboolean(L, 2);
+    const bool loop = lua_toboolean(L, 2);
     Tx tx;
-    tx(new cmd::SetTagOneShot(tag, oneShot));
+    tx(new cmd::SetTagLoop(tag, loop));
     tx.commit();
     return 0;
 }
@@ -176,15 +176,15 @@ const luaL_Reg Tag_methods[] = {
 };
 
 const Property Tag_properties[] = {
-  { "sprite", Tag_get_sprite, nullptr },
+  { "sprite",    Tag_get_sprite,    nullptr },
   { "fromFrame", Tag_get_fromFrame, Tag_set_fromFrame },
-  { "toFrame", Tag_get_toFrame, Tag_set_toFrame },
-  { "frames", Tag_get_frames, nullptr },
-  { "name", Tag_get_name, Tag_set_name },
-  { "aniDir", Tag_get_aniDir, Tag_set_aniDir },
-  { "color", Tag_get_color, Tag_set_color },
-  { "oneShot", Tag_get_oneShot, Tag_set_oneShot },
-  { nullptr, nullptr, nullptr }
+  { "toFrame",   Tag_get_toFrame,   Tag_set_toFrame },
+  { "frames",    Tag_get_frames,    nullptr },
+  { "name",      Tag_get_name,      Tag_set_name },
+  { "aniDir",    Tag_get_aniDir,    Tag_set_aniDir },
+  { "color",     Tag_get_color,     Tag_set_color },
+  { "loop",      Tag_get_loop,      Tag_set_loop },
+  { nullptr,     nullptr,           nullptr }
 };
 
 } // anonymous namespace

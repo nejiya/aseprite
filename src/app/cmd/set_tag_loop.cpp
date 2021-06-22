@@ -10,30 +10,30 @@
 #include "config.h"
 #endif
 
-#include "app/cmd/set_tag_oneshot.h"
+#include "app/cmd/set_tag_loop.h"
 
 #include "doc/tag.h"
 
 namespace app {
 namespace cmd {
 
-SetTagOneShot::SetTagOneShot(doc::Tag* tag, bool oneShot)
+SetTagLoop::SetTagLoop(doc::Tag* tag, bool loop)
   : WithTag(tag)
-  , m_oldValue(tag->oneShot())
-  , m_newValue(oneShot)
+  , m_oldValue(tag->loop())
+  , m_newValue(loop)
   
 {
 }
 
-void SetTagOneShot::onExecute()
+void SetTagLoop::onExecute()
 {
-  tag()->setOneShot(m_newValue);
+  tag()->setLoop(m_newValue);
   tag()->incrementVersion();
 }
 
-void SetTagOneShot::onUndo()
+void SetTagLoop::onUndo()
 {
-  tag()->setOneShot(m_oldValue);
+  tag()->setLoop(m_oldValue);
   tag()->incrementVersion();
 }
 

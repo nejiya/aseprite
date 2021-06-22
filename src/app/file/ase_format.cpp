@@ -968,8 +968,8 @@ static void ase_file_write_tags_chunk(FILE* f,
 
     fputw(from, f);
     fputw(to, f);
-    // 0th bit: oneShot, 1st to 7th bits: aniDir
-    fputc(((char)tag->aniDir() & 0b01111111) | (tag->oneShot() ? 0b10000000 : 0b00000000), f);
+    // 0th bit: loop, 1st to 7th bits: aniDir
+    fputc(((char)tag->aniDir() & 0b01111111) | (tag->loop() ? 0b10000000 : 0b00000000), f);
 
     fputl(0, f);  // 8 reserved bytes
     fputl(0, f);

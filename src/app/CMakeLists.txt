@@ -470,7 +470,7 @@ add_library(app-lib
   cmd/set_slice_name.cpp
   cmd/set_sprite_size.cpp
   cmd/set_tag_anidir.cpp
-  cmd/set_tag_oneshot.cpp
+        cmd/set_tag_loop.cpp
   cmd/set_tag_color.cpp
   cmd/set_tag_name.cpp
   cmd/set_tag_range.cpp

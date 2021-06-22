@@ -70,7 +70,7 @@ void NewFrameTagCommand::onExecute(Context* context)
   tag->setName(window.nameValue());
   tag->setColor(window.colorValue());
   tag->setAniDir(window.aniDirValue());
-  tag->setOneShot(window.oneShotValue());
+  tag->setLoop(window.loopValue());
 
   {
     ContextWriter writer(reader);

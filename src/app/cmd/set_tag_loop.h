@@ -6,8 +6,8 @@
 // This program is distributed under the terms of
 // the End-User License Agreement for Aseprite.
 
-#ifndef APP_CMD_SET_TAG_ONE_SHOT_H_INCLUDED
-#define APP_CMD_SET_TAG_ONE_SHOT_H_INCLUDED
+#ifndef APP_CMD_SET_TAG_LOOP_H_INCLUDED
+#define APP_CMD_SET_TAG_LOOP_H_INCLUDED
 #pragma once
 
 #include "app/cmd.h"
@@ -19,10 +19,10 @@ namespace app {
 namespace cmd {
   using namespace doc;
 
-  class SetTagOneShot : public Cmd
+  class SetTagLoop : public Cmd
                    , public WithTag {
   public:
-    SetTagOneShot(Tag* tag, bool oneShot);
+    SetTagLoop(Tag* tag, bool loop);
 
   protected:
     void onExecute() override;
