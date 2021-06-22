@@ -33,11 +33,13 @@ namespace doc {
     const std::string& name() const { return m_name; }
     color_t color() const { return m_color; }
     AniDir aniDir() const { return m_aniDir; }
+    bool loop() const { return m_loop; }
 
     void setFrameRange(frame_t from, frame_t to);
     void setName(const std::string& name);
     void setColor(color_t color);
     void setAniDir(AniDir aniDir);
+    void setLoop(bool loop);
 
     void setOwner(Tags* owner);
 
@@ -47,6 +49,7 @@ namespace doc {
     color_t m_color;
     std::string m_name;
     AniDir m_aniDir;
+    bool m_loop;
 
     // Disable operator=
     Tag& operator=(Tag&);

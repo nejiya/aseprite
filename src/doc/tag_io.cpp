@@ -31,7 +31,8 @@ void write_tag(std::ostream& os, const Tag* tag)
   write32(os, tag->fromFrame());
   write32(os, tag->toFrame());
   write32(os, tag->color());
-  write8(os, (int)tag->aniDir());
+  // 0th bit: loop, 1st to 7th bits: aniDir
+  write8(os, ((char)tag->aniDir() & 0b01111111) | (tag->loop() ? 0b10000000 : 0b00000000));
   write_string(os, tag->name());
 }
 
@@ -41,13 +42,16 @@ Tag* read_tag(std::istream& is, bool setId)
   frame_t from = read32(is);
   frame_t to = read32(is);
   color_t color = read32(is);
-  AniDir aniDir = (AniDir)read8(is);
+  auto loop_aniDir = read8(is); // 0th bit: loop, 1st to 7th bits: aniDir
+  AniDir aniDir = (AniDir)(loop_aniDir & 0b01111111);
+  bool loop = (loop_aniDir & 0b10000000) == 0b10000000;
   std::string name = read_string(is);
 
   std::unique_ptr<Tag> tag(new Tag(from, to));
   tag->setColor(color);
   tag->setAniDir(aniDir);
   tag->setName(name);
+  tag->setLoop(loop);
   if (setId)
     tag->setId(id);
   return tag.release();

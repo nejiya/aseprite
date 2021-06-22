@@ -843,12 +843,14 @@ void AsepriteDecoder::readTagsChunk(doc::Tags* tags)
   for (size_t c=0; c<ntags; ++c) {
     doc::frame_t from = read16();
     doc::frame_t to = read16();
-    int aniDir = read8();
+    auto loop_aniDir = read8(); // 0th bit: loop, 1st to 7th bits: aniDir
+    int aniDir = loop_aniDir & 0b01111111;
     if (aniDir != int(doc::AniDir::FORWARD) &&
         aniDir != int(doc::AniDir::REVERSE) &&
         aniDir != int(doc::AniDir::PING_PONG)) {
       aniDir = int(doc::AniDir::FORWARD);
     }
+    bool loop = (loop_aniDir & 0b10000000) == 0b10000000;
 
     read32();                     // 8 reserved bytes
     read32();
@@ -864,6 +866,7 @@ void AsepriteDecoder::readTagsChunk(doc::Tags* tags)
     tag->setColor(doc::rgba(r, g, b, 255));
     tag->setName(name);
     tag->setAniDir((doc::AniDir)aniDir);
+    tag->setLoop(loop);
     tags->add(tag);
   }
 }

@@ -24,6 +24,7 @@ Tag::Tag(frame_t from, frame_t to)
   , m_color(rgba(0, 0, 0, 255))
   , m_name("Tag")
   , m_aniDir(AniDir::FORWARD)
+  , m_loop(false)
 {
 }
 
@@ -35,6 +36,7 @@ Tag::Tag(const Tag& other)
   , m_color(other.m_color)
   , m_name(other.m_name)
   , m_aniDir(other.m_aniDir)
+  , m_loop(other.m_loop)
 {
 }
 
@@ -78,6 +80,11 @@ void Tag::setAniDir(AniDir aniDir)
          m_aniDir == AniDir::PING_PONG);
 
   m_aniDir = aniDir;
+}
+
+void Tag::setLoop(bool loop)
+{
+  m_loop = loop;
 }
 
 } // namespace doc
